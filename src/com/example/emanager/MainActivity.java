@@ -19,6 +19,8 @@ public class MainActivity extends Activity {
 		Expense expense=new Expense();
 		TextView textView=(TextView) findViewById(R.id.textView);
 		textView.setText(expense.toString());
+		textView.setText(expense.toString());
+
 	}
 
 	@Override
