@@ -14,7 +14,7 @@ public class ExpenseSQLiteHelper extends SQLiteOpenHelper {
     public static final Integer DATABASE_VERSION=1;
 
     public static final String TABLE_EXPENSES="expense";
-    public static final String COLUMN_ID="_id";
+    public static final String COLUMN_ID="expense_id";
     public static final String COLUMN_NAME="expense_name";
     public static final String COLUMN_AMOUNT="amount";
     public static final String COLUMN_DATE="date";
@@ -22,7 +22,7 @@ public class ExpenseSQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_MODE="mode";
 
     public static final String CREATE_TABLE="create table "+ TABLE_EXPENSES +
-            "("+ COLUMN_ID +"integer primary key autoincrement"+","
+            "("+ COLUMN_ID +" integer primary key autoincrement"+","
             + COLUMN_NAME +" text,"+COLUMN_AMOUNT+" real,"+COLUMN_DATE + " text not null," +
             COLUMN_LOCATION +" text," + COLUMN_MODE + " text);";
     public ExpenseSQLiteHelper(Context context) {
