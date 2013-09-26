@@ -1,4 +1,4 @@
-package com.example.emanager;
+package com.sapstrt.emanager.exception;
 
 /**
  * Created by cambas on 9/25/13.

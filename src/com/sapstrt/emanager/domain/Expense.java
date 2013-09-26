@@ -1,4 +1,4 @@
-package com.example.emanager;
+package com.sapstrt.emanager.domain;
 
 public class Expense {
 

@@ -1,12 +1,12 @@
-package database;
+package com.sapstrt.emanager.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.emanager.Expense;
-import com.example.emanager.ExpenseNotFoundException;
+import com.sapstrt.emanager.domain.Expense;
+import com.sapstrt.emanager.exception.ExpenseNotFoundException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

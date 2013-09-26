@@ -1,4 +1,4 @@
-package database;
+package com.sapstrt.emanager.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

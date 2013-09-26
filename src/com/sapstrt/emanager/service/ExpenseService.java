@@ -1,8 +1,7 @@
-package com.example.emanager.service;
+package com.sapstrt.emanager.service;
 
-import android.content.Context;
 
-import com.example.emanager.Expense;
+import com.sapstrt.emanager.domain.Expense;
 
 import java.util.List;
 

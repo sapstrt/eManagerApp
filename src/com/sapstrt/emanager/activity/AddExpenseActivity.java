@@ -1,4 +1,4 @@
-package com.example.emanager;
+package com.sapstrt.emanager.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,12 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.emanager.service.ExpenseService;
-import com.example.emanager.service.ExpenseServiceImpl;
-
-import java.sql.Date;
-
-import database.ExpenseDataSource;
+import com.sapstrt.emanager.R;
+import com.sapstrt.emanager.domain.Expense;
+import com.sapstrt.emanager.service.ExpenseService;
+import com.sapstrt.emanager.service.ExpenseServiceImpl;
 
 /**
  * Created by pteltu on 9/25/13.
@@ -32,7 +30,7 @@ public class AddExpenseActivity extends Activity implements View.OnClickListener
     @Override
     public void onClick(View view) {
 
-        if(((Button)view).getId()==R.id.addButton){
+        if((view).getId()==R.id.addButton){
             Expense expense=new Expense();
             expense.setExpenseName(((EditText) findViewById(R.id.expenseName)).getText().toString());
             String amt=((EditText)findViewById(R.id.amount)).getText().toString();
