@@ -8,10 +8,62 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+
+
+    <LinearLayout android:layout_height="wrap_content"
+                  android:layout_width="wrap_content"
+                  android:id="@+id/linearLayout2">
+
+        <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="387dp"
+                android:id="@id/android:list"
+                android:layout_below="@+id/linearLayout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"/>
+        <TextView
+                android:id="@+id/welcome"
+                android:text="@string/empty_message"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                />
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/linearLayout"
+                  android:layout_alignParentBottom="true"
+                  android:layout_alignLeft="@+id/linearLayout2">
+
+
+        <ImageButton
+                android:layout_width="81dp"
+                android:layout_height="60dp"
+                android:id="@+id/addExpense"
+                android:layout_below="@+id/linearLayout"
+                android:layout_alignParentLeft="true"
+                android:background="@android:drawable/ic_input_add"
+                android:layout_marginTop="20dp"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/generate"
+                android:id="@+id/generateExpense"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="26dp"/>
+    </LinearLayout>
 
 </RelativeLayout>
+
+
+<!--
+
+<TextView
+android:id="@+id/smsNumberText"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="NUMBER_GOES_HERE" />-->

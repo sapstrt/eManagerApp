@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+    <EditText
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/expenseName"
+            android:layout_gravity="left|center_vertical"
+            android:hint="@string/expenseName"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/amount"
+            android:layout_gravity="left|center_vertical"
+            android:hint="@string/amount"/>
+
+  <!--  <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/datePicker"/>-->
+
+
+    <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/date"
+            android:hint="@string/date"/>
+
+
+
+    <EditText
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/location"
+            android:layout_gravity="left|center_vertical"
+            android:hint="@string/location"/>
+
+    <EditText
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/mode"
+            android:layout_gravity="left|center_vertical"
+            android:hint="@string/mode"/>
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            android:id="@+id/addButton"
+            android:layout_gravity="left|center_vertical"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:id="@+id/cancelButton"
+            android:layout_gravity="left|center_vertical"/>
+    </LinearLayout>
+</LinearLayout>

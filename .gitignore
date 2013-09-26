@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 .classpath
 .project
 .idea/*
 *.iml
 gen/*
 out/
+=======
+.classpath
+.project
+.idea/*
+*.iml
+out/
+gen/*
+>>>>>>> 967187b1b4aa072e3a634c77c0f982ae46348881
