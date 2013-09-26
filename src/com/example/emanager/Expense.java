@@ -1,20 +1,20 @@
 package com.example.emanager;
 
-
-import java.sql.Date;
-
 public class Expense {
 
-    private  String expenseName;
+    private Integer expenseId;
+    private String expenseName;
+    private String date;
     private Double amount;
-    private Date date;
-    private  String note;
+    private String location;
+    private String mode;
 
-    public Expense(String expenseName, Double amount, Date date, String note) {
-        this.expenseName = expenseName;
-        this.amount = amount;
-        this.date = date;
-        this.note = note;
+    public Integer getExpenseId() {
+        return expenseId;
+    }
+
+    public void setExpenseId(Integer expenseId) {
+        this.expenseId = expenseId;
     }
 
     public String getExpenseName() {
@@ -25,6 +25,14 @@ public class Expense {
         this.expenseName = expenseName;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public Double getAmount() {
         return amount;
     }
@@ -33,41 +41,31 @@ public class Expense {
         this.amount = amount;
     }
 
-    public Date getDate() {
-        return date;
+    public String getMode() {
+        return mode;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
-    public String getNote() {
-        return note;
+    public String getLocation() {
+        return location;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
     public String toString() {
         return "Expense{" +
-                "expenseName='" + expenseName + '\'' +
-                ", amount='" + amount + '\'' +
+                "expenseId=" + expenseId +
+                ", expenseName='" + expenseName + '\'' +
                 ", date=" + date +
-                ", note='" + note + '\'' +
+                ", amount=" + amount +
+                ", location='" + location + '\'' +
+                ", mode='" + mode + '\'' +
                 '}';
     }
-
-    public Integer getExpenseId() {
-        return expenseId;
-    }
-
-    public void setExpenseId(Integer expenseId) {
-        this.expenseId = expenseId;
-    }
-
-    
-
-   
 }

@@ -32,14 +32,8 @@ public class AddExpenseActivity extends Activity implements View.OnClickListener
             expense.setExpenseName(((EditText) findViewById(R.id.expenseName)).getText().toString());
             String amt=((EditText)findViewById(R.id.amount)).getText().toString();
             expense.setAmount(Double.parseDouble(amt));
-            //expense.setDate( (Date)findViewById(R.id.date).toString());
-            expense.setNote(((EditText) findViewById(R.id.note)).getText().toString());
-
-
-            /*datasource = new ExpenseDataSource(this);
-            datasource.open();
-            datasource.createExpense(expense);
-            datasource.close();*/
+            /*//expense.setDate( (Date)findViewById(R.id.date).toString());
+            expense.setNote(((EditText) findViewById(R.id.note)).getText().toString());*/
         }
         Intent intent = new Intent(this,MainActivity.class);
         this.startActivity(intent);

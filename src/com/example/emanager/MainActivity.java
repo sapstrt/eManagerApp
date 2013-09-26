@@ -31,8 +31,8 @@ public class MainActivity extends ListActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-        Expense expense=new Expense("gfg",23.0,null,"dgd");
-        expenseList.add(expense);
+        /*Expense expense=new Expense("gfg",23.0,null,"dgd");
+        expenseList.add(expense);*/
 
         ListView listView=(ListView)findViewById(android.R.id.list);
 
