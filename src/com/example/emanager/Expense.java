@@ -59,6 +59,15 @@ public class Expense {
                 '}';
     }
 
-    public Expense() {
+    public Integer getExpenseId() {
+        return expenseId;
     }
+
+    public void setExpenseId(Integer expenseId) {
+        this.expenseId = expenseId;
+    }
+
+    
+
+   
 }
