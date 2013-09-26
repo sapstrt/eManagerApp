@@ -17,7 +17,7 @@
         <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="387dp"
-                android:id="@+id/listOfExpenses"
+                android:id="@id/android:list"
                 android:layout_below="@+id/linearLayout"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"/>

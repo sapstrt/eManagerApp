@@ -26,7 +26,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
         Expense expense=new Expense("gfg",23.0,null,"dgd");
         expenseList.add(expense);
 
-        ListView listView=(ListView)findViewById(R.id.listOfExpenses);
+        ListView listView=(ListView)findViewById(android.R.id.list);
 
             View welcomeMsg = findViewById(R.id.welcome);
             listView.setEmptyView(welcomeMsg);
@@ -45,7 +45,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 
 
@@ -67,4 +67,22 @@ public class MainActivity extends ListActivity implements OnClickListener{
                 throw new RuntimeException("Button ID not known");
     }
     }
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+    }
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+    }
+
 }
