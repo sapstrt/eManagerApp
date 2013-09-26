@@ -25,6 +25,7 @@ public class ExpenseDataSource {
 
     public ExpenseDataSource(Context context) {
         dbHelper = new ExpenseSQLiteHelper(context);
+
     }
 
     public void open() throws SQLException {
@@ -37,74 +38,119 @@ public class ExpenseDataSource {
 
     public void createExpense(Expense expense)
     {
-        if(null!=expense)
-        {
-        ContentValues contentValues=new ContentValues();
+        try {
+            open();
+            if(null!=expense)
+            {
+                ContentValues contentValues=new ContentValues();
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_NAME,expense.getExpenseName());
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_AMOUNT,expense.getAmount());
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_DATE,expense.getDate().toString());
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_LOCATION,expense.getLocation());
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_MODE,expense.getMode());
+                database.insert(ExpenseSQLiteHelper.TABLE_EXPENSES,null,contentValues);
 
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_NAME,expense.getExpenseName());
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_AMOUNT,expense.getAmount());
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_DATE,expense.getDate().toString());
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_LOCATION,expense.getLocation());
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_MODE,expense.getMode());
-        long insertId=database.insert(ExpenseSQLiteHelper.TABLE_EXPENSES,null,contentValues);
-            System.out.print(insertId);
+            }
+            else
+                throw new ExpenseNotFoundException("Expense Not Found");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        else
-            throw new ExpenseNotFoundException("Expense Not Found");
+        finally {
+            close();
+        }
+
     }
     public void editExpense(Expense expense)
     {
-        if(null!=expense)
-        {
-            ContentValues contentValues=new ContentValues();
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_NAME,expense.getExpenseName());
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_AMOUNT,expense.getAmount());
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_DATE,expense.getDate().toString());
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_LOCATION,expense.getLocation());
-            contentValues.put(ExpenseSQLiteHelper.COLUMN_MODE,expense.getMode());
-            long updateId=database.update(ExpenseSQLiteHelper.TABLE_EXPENSES,contentValues,ExpenseSQLiteHelper.COLUMN_ID +"="+expense.getExpenseId().toString(),null);
-            System.out.print(updateId);
+
+        try {
+            open();
+            if(null!=expense)
+            {
+                ContentValues contentValues=new ContentValues();
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_NAME,expense.getExpenseName());
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_AMOUNT,expense.getAmount());
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_DATE,expense.getDate().toString());
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_LOCATION,expense.getLocation());
+                contentValues.put(ExpenseSQLiteHelper.COLUMN_MODE,expense.getMode());
+                long updateId=database.update(ExpenseSQLiteHelper.TABLE_EXPENSES,contentValues,ExpenseSQLiteHelper.COLUMN_ID +"="+expense.getExpenseId().toString(),null);
+                System.out.print(updateId);
+            }
+            else
+                throw new RuntimeException("Expense Not Found");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        else
-            throw new RuntimeException("Expense Not Found");
+        finally {
+            close();
+        }
+
+
     }
 
 
-        public void deleteExpense(Integer expenseId)
-    {
-        System.out.println("Expense deleted with ID:" + expenseId);
-        database.delete(ExpenseSQLiteHelper.TABLE_EXPENSES,ExpenseSQLiteHelper.COLUMN_ID + "="+expenseId,null);
+      public void deleteExpense(Integer expenseId) {
+        try {
+            open();
+            database.delete(ExpenseSQLiteHelper.TABLE_EXPENSES,ExpenseSQLiteHelper.COLUMN_ID + "="+expenseId,null);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+          finally {
+            close();
+        }
 
     }
 
     public List<Expense> getAllExpense()
     {
         List<Expense> expenseList=new ArrayList<Expense>();
-
-        Cursor cursor=database.query(ExpenseSQLiteHelper.TABLE_EXPENSES,allColumns,null,null,null,null,null);
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast())
-        {
-            Expense expense=cursorToExpense(cursor);
-            expenseList.add(expense);
+        String selectQuery = "SELECT  * FROM " + ExpenseSQLiteHelper.TABLE_EXPENSES;
+        try {
+            open();
+            Cursor cursor = database.rawQuery(selectQuery, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    Expense expense = new Expense();
+                    expense.setExpenseId(cursor.getInt(0));
+                    expense.setExpenseName(cursor.getString(1));
+                    expense.setAmount(cursor.getDouble(2));
+                    expense.setDate(cursor.getString(3) );
+                    expense.setLocation(cursor.getString(4));
+                    expense.setMode(cursor.getString(5));
+                    // Adding contact to list
+                    expenseList.add(expense);
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close();
         }
-        cursor.close();
         return expenseList;
     }
 
-    public List<Expense> getExpenseByName(String regex)
-    {
-        List<Expense> expenseListByName=new ArrayList<Expense>();
-        Cursor cursor=database.query(ExpenseSQLiteHelper.TABLE_EXPENSES,allColumns,ExpenseSQLiteHelper.COLUMN_NAME+" like " + regex,null,null,null,null);
-        while(!cursor.isAfterLast())
-        {
-            Expense expense=cursorToExpense(cursor);
-            expenseListByName.add(expense);
-        }
-        cursor.close();
-        return expenseListByName;
+   public List<Expense> getExpenseByName(String regex){
+       List<Expense> expenseListByName=null;
+        try {
+                open();
+                expenseListByName=new ArrayList<Expense>();
+                Cursor cursor=database.query(ExpenseSQLiteHelper.TABLE_EXPENSES,allColumns,ExpenseSQLiteHelper.COLUMN_NAME+" like " + regex,null,null,null,null);
+                while(!cursor.isAfterLast())
+                {
+                    Expense expense=cursorToExpense(cursor);
+                    expenseListByName.add(expense);
+                }
+                cursor.close();
 
-    }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close();
+        }
+       return expenseListByName;
+   }
 
 
 

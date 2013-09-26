@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface ExpenseService {
 
-    public List<Expense> getAllExpenses(Context context);
-    public List<Expense> searchExpenseByName(Context context, String name);
-    public void createNewExpense(Context context,Expense expense);
-    public void updateExpense(Context context,Expense expense);
-    public void deleteExpense(Context context,Expense expense);
+    public List<Expense> getAllExpenses();
+    public List<Expense> searchExpenseByName( String name);
+    public void createNewExpense(Expense expense);
+    public void updateExpense(Expense expense);
+    public void deleteExpense(Expense expense);
 }

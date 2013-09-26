@@ -7,7 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.emanager.service.ExpenseService;
+import com.example.emanager.service.ExpenseServiceImpl;
+
 import java.sql.Date;
+
+import database.ExpenseDataSource;
 
 /**
  * Created by pteltu on 9/25/13.
@@ -32,8 +37,13 @@ public class AddExpenseActivity extends Activity implements View.OnClickListener
             expense.setExpenseName(((EditText) findViewById(R.id.expenseName)).getText().toString());
             String amt=((EditText)findViewById(R.id.amount)).getText().toString();
             expense.setAmount(Double.parseDouble(amt));
-            /*//expense.setDate( (Date)findViewById(R.id.date).toString());
-            expense.setNote(((EditText) findViewById(R.id.note)).getText().toString());*/
+            expense.setDate( findViewById(R.id.date).toString());
+            expense.setMode(findViewById(R.id.mode).toString());
+            expense.setLocation(findViewById(R.id.location).toString());
+
+            ExpenseService expenseService=new ExpenseServiceImpl(this);
+            expenseService.createNewExpense(expense);
+
         }
         Intent intent = new Intent(this,MainActivity.class);
         this.startActivity(intent);

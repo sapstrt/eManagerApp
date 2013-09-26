@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -22,7 +24,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddExpenseActivity"/>
+        <activity
+                android:name="com.example.emanager.AddExpenseActivity"
+                android:label="@string/title_activity_add_expense"
+                android:parentActivityName="com.example.emanager.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.emanager.MainActivity" />
+        </activity>
+        <!--<receiver android:name=".SmsReceiver"
+                  android:enabled="true">
+            <intent-filter >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>-->
     </application>
 
 </manifest>
