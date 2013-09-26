@@ -1,24 +1,28 @@
 package com.example.emanager;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+
+import com.example.emanager.service.ExpenseService;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-import android.widget.TextView;
-
 public class MainActivity extends Activity {
 	List<Expense> expenseList=new ArrayList<Expense>();
+    ExpenseService expenseService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 		Expense expense=new Expense();
-		TextView textView=(TextView) findViewById(R.id.textView);
-		textView.setText(expense.toString());
+        expense.setExpenseName("XYZ");
+        expense.setLocation("BANGALORE");
+        expense.setAmount(200.0);
+        expense.setDate("1/1/2013");
+		expenseService.createNewExpense(this,expense);
 	}
 
 	@Override
