@@ -1,4 +1,4 @@
-package com.sapstrt.emanager.service;
+package com.sapstrt.emanager.service.expense;
 
 
 import com.sapstrt.emanager.domain.Expense;

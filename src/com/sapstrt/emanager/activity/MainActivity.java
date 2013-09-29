@@ -17,9 +17,9 @@ import android.view.View.OnClickListener;
 
 import com.sapstrt.emanager.R;
 import com.sapstrt.emanager.domain.Expense;
-import com.sapstrt.emanager.service.ExpenseService;
-import com.sapstrt.emanager.service.ExpenseServiceImpl;
-import com.sapstrt.emanager.service.NotificationService;
+import com.sapstrt.emanager.service.expense.ExpenseService;
+import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
+import com.sapstrt.emanager.service.util.NotificationService;
 
 
 public class MainActivity extends ListActivity implements OnClickListener {

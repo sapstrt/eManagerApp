@@ -9,8 +9,8 @@ import android.widget.EditText;
 
 import com.sapstrt.emanager.R;
 import com.sapstrt.emanager.domain.Expense;
-import com.sapstrt.emanager.service.ExpenseService;
-import com.sapstrt.emanager.service.ExpenseServiceImpl;
+import com.sapstrt.emanager.service.expense.ExpenseService;
+import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
 
 /**
  * Created by pteltu on 9/25/13.

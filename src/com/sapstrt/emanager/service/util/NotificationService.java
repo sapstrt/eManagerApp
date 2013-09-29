@@ -1,4 +1,4 @@
-package com.sapstrt.emanager.service;
+package com.sapstrt.emanager.service.util;
 
 import android.app.Activity;
 import android.app.NotificationManager;

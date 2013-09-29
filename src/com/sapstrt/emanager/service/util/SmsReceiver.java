@@ -1,19 +1,19 @@
-package com.sapstrt.emanager.service;
+package com.sapstrt.emanager.service.util;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsMessage;
 import android.widget.Toast;
 
 
-import com.sapstrt.emanager.R;
 import com.sapstrt.emanager.activity.MainActivity;
+import com.sapstrt.emanager.domain.Expense;
+import com.sapstrt.emanager.service.preexpense.ExpenseMaker;
+import com.sapstrt.emanager.service.preexpense.ExpenseMakerImpl;
+import com.sapstrt.emanager.service.preexpense.MessageFilter;
+import com.sapstrt.emanager.service.preexpense.MessageFilterImpl;
 
 /**
  * Created by vvarm1 on 9/25/13.*/
@@ -21,6 +21,8 @@ import com.sapstrt.emanager.activity.MainActivity;
 
 public class SmsReceiver extends BroadcastReceiver {
     NotificationService notificationService=new NotificationService();
+    MessageFilter messageFilter=new MessageFilterImpl();
+    ExpenseMaker maker=new ExpenseMakerImpl();
     public static final String SMS_EXTRA_NAME ="pdus";
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -31,13 +33,14 @@ public class SmsReceiver extends BroadcastReceiver {
             for ( int i = 0; i < smsExtra.length; ++i )
             {
                 SmsMessage sms = SmsMessage.createFromPdu((byte[])smsExtra[i]);
-                String body = sms.getMessageBody().toString();
-                String address = sms.getOriginatingAddress();
-                messages += "SMS from " + address + " :\n";
-                messages += body + "\n";
+                if (messageFilter.isUsefulMessage(sms)){
+                    Expense expense=maker.createExpense(sms);
+                    Toast.makeText(context,expense.toString(),Toast.LENGTH_LONG).show();
+                    notificationService.sendSmallNotification(context,MainActivity.class,"New Expense waiting for approval.");
+
+                }
             }
-            notificationService.sendSmallNotification(context,MainActivity.class,"New Expense waiting for approval.");
-            Toast.makeText( context, messages, Toast.LENGTH_SHORT ).show();
+
         }
     }
 }
