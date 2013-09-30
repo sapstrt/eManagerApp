@@ -28,7 +28,7 @@ public class MainActivity extends ListActivity implements OnClickListener {
     NotificationService notificationService=new NotificationService();
 
 
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         notificationService.clearAllNotifications(this);
@@ -41,14 +41,14 @@ public class MainActivity extends ListActivity implements OnClickListener {
         generateButton.setOnClickListener((android.view.View.OnClickListener) this);
     }
 
-    @Override
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
 
-    @Override
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.addExpense:
@@ -66,13 +66,13 @@ public class MainActivity extends ListActivity implements OnClickListener {
         }
     }
 
-    @Override
+
     protected void onDestroy() {
 
         super.onDestroy();
     }
 
-    @Override
+
     protected void onResume() {
         super.onResume();
         expenseList = expenseService.getAllExpenses();
@@ -87,7 +87,7 @@ public class MainActivity extends ListActivity implements OnClickListener {
         }
     }
 
-    @Override
+
     protected void onPause() {
 
         super.onPause();

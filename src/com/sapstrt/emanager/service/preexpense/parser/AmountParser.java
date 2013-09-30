@@ -1,6 +1,4 @@
-package com.sapstrt.emanager.service.preexpense;
-
-import android.telephony.SmsMessage;
+package com.sapstrt.emanager.service.preexpense.parser;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -15,12 +13,12 @@ public class AmountParser implements Parser {
     List<String> keywords;
 
     public AmountParser() {
-        keywords=new ArrayList<String>();
+        keywords=new ArrayList<>();
         keywords.add("rs");
         keywords.add("inr");
     }
 
-    @Override
+
     public Map.Entry<String, String> parseInformationFromText(String[] messageTokens) {
         Map.Entry<String,String> amountEntry=null;
         for (String keyword:keywords){
@@ -30,7 +28,7 @@ public class AmountParser implements Parser {
                 if(tokens.get(index+1)!=null){
                     try{
                         Double.parseDouble(tokens.get(index+1));
-                        amountEntry=new AbstractMap.SimpleEntry<String, String>("amount",tokens.get(index+1));
+                        amountEntry=new AbstractMap.SimpleEntry<>("amount",tokens.get(index+1));
                         break;
                     }catch (NumberFormatException e){
 

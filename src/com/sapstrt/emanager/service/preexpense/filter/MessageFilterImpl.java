@@ -1,8 +1,8 @@
-package com.sapstrt.emanager.service.preexpense;
+package com.sapstrt.emanager.service.preexpense.filter;
 
 import android.telephony.SmsMessage;
 
-import com.sapstrt.emanager.service.preexpense.MessageFilter;
+import com.sapstrt.emanager.service.preexpense.filter.MessageFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class MessageFilterImpl implements MessageFilter {
 
-    @Override
+
     public boolean isUsefulMessage(SmsMessage sms) {
 
         if (getUsefulAddress().contains(sms.getOriginatingAddress())){
@@ -22,7 +22,7 @@ public class MessageFilterImpl implements MessageFilter {
     }
     List<String> getUsefulAddress(){
         List<String> addresses=null;
-        addresses=new ArrayList<String>();
+        addresses=new ArrayList<>();
         addresses.add("990");
         addresses.add("111");
         return addresses;

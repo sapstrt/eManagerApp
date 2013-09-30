@@ -1,4 +1,4 @@
-package com.sapstrt.emanager.service.preexpense;
+package com.sapstrt.emanager.service.preexpense.parser;
 
 import android.telephony.SmsMessage;
 

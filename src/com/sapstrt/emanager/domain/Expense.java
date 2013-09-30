@@ -57,7 +57,7 @@ public class Expense {
         this.location = location;
     }
 
-    @Override
+
     public String toString() {
         return  " Expense Name :" + expenseName +
                 " Date :" + date +
