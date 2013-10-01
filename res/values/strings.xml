@@ -12,8 +12,9 @@
     <string name="add"> ADD </string>
     <string name="cancel"> CANCEL </string>
     <string name="note">Note</string>
-    <string name="date">Date</string>
+    <string name="date">Date(dd/mm/yyyy)</string>
     <string name="title_activity_add_expense">Add Expense</string>
     <string name="location">Location</string>
     <string name="mode">Mode</string>
+    <string name="refresh">Refresh</string>
 </resources>

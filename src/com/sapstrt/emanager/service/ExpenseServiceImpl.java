@@ -7,6 +7,7 @@ import com.sapstrt.emanager.domain.Expense;
 import com.sapstrt.emanager.exception.ExpenseNotFoundException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -17,6 +18,31 @@ public class ExpenseServiceImpl implements ExpenseService {
     private ExpenseDataSource expenseDataSource;
     public ExpenseServiceImpl(Context context) {
         expenseDataSource = new ExpenseDataSource(context);
+    }
+
+    @Override
+    public List<String> prepareListDataHeader(){
+        List<String> headerList=new ArrayList<String>();
+        List<Expense> expenseList=expenseDataSource.getAllExpense();
+        for(Expense e:expenseList){
+            headerList.add(e.getExpenseName());
+        }
+        return headerList;
+    }
+
+    @Override
+    public HashMap<String,List<String>> prepareListDataMap(){
+        HashMap<String,List<String>> ExpenseMap=new HashMap<String,List<String>>();
+        List<Expense> expenseList=expenseDataSource.getAllExpense();
+        for(Expense e:expenseList){
+            List<String> childList=new ArrayList<String>();
+            childList.add("Amount   :"+e.getAmount().toString());
+            childList.add("Date         :"+e.getDate());
+            childList.add("Location :"+e.getLocation());
+            childList.add("Mode      :"+e.getMode());
+            ExpenseMap.put(e.getExpenseName(),childList);
+        }
+        return ExpenseMap;
     }
     @Override
     public List<Expense> getAllExpenses() {
@@ -60,3 +86,8 @@ public class ExpenseServiceImpl implements ExpenseService {
             throw new ExpenseNotFoundException("Expense Not Found");
     }
 }
+/*
+childList.add("Amount   :"+e.getAmount().toString());
+childList.add("Date         :"+e.getDate());
+childList.add("Location :"+e.getLocation());
+childList.add("Mode      :"+e.getMode());*/

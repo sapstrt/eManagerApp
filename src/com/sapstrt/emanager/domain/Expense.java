@@ -59,10 +59,12 @@ public class Expense {
 
     @Override
     public String toString() {
-        return  " Expense Name :" + expenseName +
+        return
+                " Expense Name :" + expenseName +
                 " Date :" + date +
                 " Amount :" + amount +
                 " Location :" + location +
-                " Mode :" + mode   ;
+                " Mode :" + mode  ;
+
     }
 }
