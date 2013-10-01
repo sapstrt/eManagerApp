@@ -3,6 +3,7 @@ package com.sapstrt.emanager.service.expense;
 
 import com.sapstrt.emanager.domain.Expense;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,4 +16,6 @@ public interface ExpenseService {
     public void createNewExpense(Expense expense);
     public void updateExpense(Expense expense);
     public void deleteExpense(Expense expense);
+    public List<String> prepareListDataHeader();
+    public HashMap<String,List<String>> prepareListDataMap();
 }

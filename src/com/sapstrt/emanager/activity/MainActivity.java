@@ -1,44 +1,39 @@
 package com.sapstrt.emanager.activity;
 
-
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.view.View.OnClickListener;
 
-import com.sapstrt.emanager.R;
+import com.sapstrt.emanager.database.ExpenseDataSource;
 import com.sapstrt.emanager.domain.Expense;
+import com.sapstrt.emanager.service.adapter.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import com.sapstrt.emanager.R;
 import com.sapstrt.emanager.service.expense.ExpenseService;
 import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
 import com.sapstrt.emanager.service.util.NotificationService;
 
 
-public class MainActivity extends ListActivity implements OnClickListener {
-    List<Expense> expenseList = new ArrayList<Expense>();
+public class MainActivity extends Activity {
     ExpenseService expenseService;
     NotificationService notificationService=new NotificationService();
+    ExpandableListAdapter expListAdapter;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
+    ExpandableListView listView;
 
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        notificationService.clearAllNotifications(this);
         setContentView(R.layout.activity_main);
+        notificationService.clearAllNotifications(this);
         expenseService = new ExpenseServiceImpl(this);
-        ImageButton addButton = (ImageButton) findViewById(R.id.addExpense);
-        Button generateButton = (Button) findViewById(R.id.generateExpense);
-
-        addButton.setOnClickListener((android.view.View.OnClickListener) this);
-        generateButton.setOnClickListener((android.view.View.OnClickListener) this);
     }
 
 
@@ -48,43 +43,47 @@ public class MainActivity extends ListActivity implements OnClickListener {
     }
 
 
-
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.addExpense:
-                Intent intent = new Intent(this, AddExpenseActivity.class);
-                this.startActivity(intent);
-                break;
-            case R.id.generateExpense:
-
-                ArrayAdapter<Expense> adapter = new ArrayAdapter<Expense>(this,
-                        android.R.layout.simple_list_item_1, expenseList);
-                setListAdapter(adapter);
-                break;
-            default:
-                throw new RuntimeException("Button ID not known");
-        }
-    }
-
-
     protected void onDestroy() {
 
         super.onDestroy();
     }
 
 
+   @Override
     protected void onResume() {
         super.onResume();
-        expenseList = expenseService.getAllExpenses();
-        ListView listView = (ListView) findViewById(android.R.id.list);
-        if (!expenseList.isEmpty()) {
-            ArrayAdapter<Expense> adapter = new ArrayAdapter<Expense>(this,
-                    android.R.layout.simple_list_item_1, expenseList);
-            setListAdapter(adapter);
+        listView = (ExpandableListView) findViewById(R.id.lvExp);
+        listDataHeader=expenseService.prepareListDataHeader();
+        listDataChild=expenseService.prepareListDataMap();
+        if (!listDataHeader.isEmpty() && !listDataChild.isEmpty()) {
+            expListAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+            listView.setAdapter(expListAdapter);
         } else {
             View welcomeMsg = findViewById(R.id.welcome);
             listView.setEmptyView(welcomeMsg);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                listDataHeader=expenseService.prepareListDataHeader();
+                listDataChild=expenseService.prepareListDataMap();
+                expListAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+                listView.setAdapter(expListAdapter);
+                break;
+            case R.id.action_settings:
+                break;
+            case R.id.action_add:
+                Intent intent = new Intent(this, AddExpenseActivity.class);
+                this.startActivity(intent);
+                break;
+            default:
+                break;
+        }
+
+        return true;
     }
 
 

@@ -7,6 +7,7 @@ import com.sapstrt.emanager.domain.Expense;
 import com.sapstrt.emanager.exception.ExpenseNotFoundException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -17,6 +18,32 @@ public class ExpenseServiceImpl implements ExpenseService {
     private ExpenseDataSource expenseDataSource;
     public ExpenseServiceImpl(Context context) {
         expenseDataSource = new ExpenseDataSource(context);
+    }
+
+
+    @Override
+    public List<String> prepareListDataHeader(){
+        List<Expense> expenseList=expenseDataSource.getAllExpense();
+        List<String> expenseNameList =new ArrayList<String>();
+        for(Expense e:expenseList){
+            expenseNameList.add(e.getExpenseName());
+        }
+        return expenseNameList;
+    }
+
+    @Override
+    public HashMap<String,List<String>> prepareListDataMap(){
+        HashMap<String,List<String>> ExpenseMap=new HashMap<String,List<String>>();
+        List<Expense> expenseList=expenseDataSource.getAllExpense();
+        for(Expense e:expenseList){
+            List<String> childList=new ArrayList<String>();
+            childList.add("Amount   :"+e.getAmount().toString());
+            childList.add("Date         :"+e.getDate());
+            childList.add("Location :"+e.getLocation());
+            childList.add("Mode      :"+e.getMode());
+            ExpenseMap.put(e.getExpenseName(),childList);
+        }
+        return ExpenseMap;
     }
 
     public List<Expense> getAllExpenses() {
