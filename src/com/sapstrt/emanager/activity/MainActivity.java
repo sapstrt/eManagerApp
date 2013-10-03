@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
     }
 
 
-   @Override
+
     protected void onResume() {
         super.onResume();
         listView = (ExpandableListView) findViewById(R.id.lvExp);
@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    @Override
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:

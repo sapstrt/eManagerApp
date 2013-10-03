@@ -34,9 +34,9 @@ public class AddExpenseActivity extends Activity implements View.OnClickListener
             expense.setExpenseName(((EditText) findViewById(R.id.expenseName)).getText().toString());
             String amt=((EditText)findViewById(R.id.amount)).getText().toString();
             expense.setAmount(Double.parseDouble(amt));
-            expense.setDate( findViewById(R.id.date).toString());
-            expense.setMode(findViewById(R.id.mode).toString());
-            expense.setLocation(findViewById(R.id.location).toString());
+            expense.setDate( ((EditText) findViewById(R.id.date)).getText().toString());
+            expense.setMode(((EditText) findViewById(R.id.mode)).getText().toString());
+            expense.setLocation(((EditText) findViewById(R.id.location)).getText().toString());
 
             ExpenseService expenseService=new ExpenseServiceImpl(this);
             expenseService.createNewExpense(expense);
