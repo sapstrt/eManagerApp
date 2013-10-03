@@ -27,7 +27,6 @@ public class SmsReceiver extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         Bundle extras=intent.getExtras();
-        String messages = "";
         if (extras!=null){
             Object[] smsExtra = (Object[]) extras.get( SMS_EXTRA_NAME );
             for ( int i = 0; i < smsExtra.length; ++i )
@@ -35,12 +34,12 @@ public class SmsReceiver extends BroadcastReceiver {
                 SmsMessage sms = SmsMessage.createFromPdu((byte[])smsExtra[i]);
                 if (messageFilter.isUsefulMessage(sms)){
                     Expense expense=maker.createExpense(sms);
-                    Toast.makeText(context,expense.toString(),Toast.LENGTH_LONG).show();
-                    notificationService.sendSmallNotification(context,MainActivity.class,"New Expense waiting for approval.");
-
+                    if (expense!=null){
+                        Toast.makeText(context,expense.toString(),Toast.LENGTH_LONG).show();
+                        notificationService.sendSmallNotification(context,MainActivity.class,"New Expense waiting for approval.");
+                    }
                 }
             }
-
         }
     }
 }
