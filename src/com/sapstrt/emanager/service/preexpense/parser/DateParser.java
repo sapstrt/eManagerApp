@@ -1,6 +1,8 @@
 package com.sapstrt.emanager.service.preexpense.parser;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -33,21 +35,20 @@ public class DateParser extends AbstractParser implements Parser {
                 String tempDate=null;
                 SimpleDateFormat tempFmt=null;
                 SimpleDateFormat finalFmt=new SimpleDateFormat("dd-MMM-yyyy");
+                ParsePosition pos=new ParsePosition(0);
                 if ((tempDate=tokens.get(index+1))!=null){
                     for (String fmmtter:dateFormats){
                         tempFmt=new SimpleDateFormat(fmmtter);
-                        try{
-                            Date date=tempFmt.parse(tempDate);
+                        tempFmt.setLenient(false);
+                        Date date=tempFmt.parse(tempDate,pos);
+                        if (date!=null){
                             dateEntry=new AbstractMap.SimpleEntry<>("date",finalFmt.format(date));
                             break;
-                        } catch (ParseException e) {
                         }
                     }
                 }
-
             }
         }
         return dateEntry;
     }
-
 }

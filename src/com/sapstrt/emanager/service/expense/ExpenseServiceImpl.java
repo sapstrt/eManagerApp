@@ -64,10 +64,17 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 
     public boolean createNewExpense(Expense expense) {
-        if (null != expense){
+        if (expense!=null)
+            if (validateExpense(expense)){
             expenseDataSource.createExpense(expense);
             return true;
         }
+        return false;
+    }
+
+    private boolean validateExpense(Expense expense) {
+        if (expense!=null)
+
         return false;
     }
 

@@ -18,6 +18,7 @@ public class ModeParser extends AbstractParser implements Parser {
         keywords.add("credit card");
         keywords.add("debit card");
         keywords.add("atm");
+        keywords.add("cash");
     }
 //case sensitive and regex cases !
     public Map.Entry<String, String> parseInformationFromText(String messageTokens) {
@@ -37,6 +38,7 @@ public class ModeParser extends AbstractParser implements Parser {
                 case "debit card":
                     modeEntry=new AbstractMap.SimpleEntry<>("mode","debit card");
                     break;
+                case "cash":
                 case "atm":
                     modeEntry=new AbstractMap.SimpleEntry<>("mode","cash");
             }
