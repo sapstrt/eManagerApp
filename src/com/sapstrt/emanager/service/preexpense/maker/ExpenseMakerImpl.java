@@ -9,6 +9,7 @@ import com.sapstrt.emanager.service.preexpense.parser.LocationParser;
 import com.sapstrt.emanager.service.preexpense.parser.ModeParser;
 import com.sapstrt.emanager.service.preexpense.parser.Parser;
 import com.sapstrt.emanager.service.preexpense.parser.TypeParser;
+import com.sapstrt.emanager.service.util.LocationService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,8 +23,10 @@ import java.util.Set;
  */
 public class ExpenseMakerImpl implements ExpenseMaker {
     Set<Parser> parsers;
+    LocationService locationService;
 
     public ExpenseMakerImpl() {
+        locationService=new LocationService();
         parsers=new HashSet<>();
         parsers.add(new AmountParser());
         parsers.add(new DateParser());
@@ -35,7 +38,7 @@ public class ExpenseMakerImpl implements ExpenseMaker {
 
     public Expense createExpense(SmsMessage sms) {
         Expense expense=null;
-        String[] tokens=tokenize(sms.getMessageBody());
+        String tokens= format(sms.getMessageBody());
         Map<String,String> map=new HashMap<>();
         for (Parser parser:parsers){
             Map.Entry<String,String> tempEntry=parser.parseInformationFromText(tokens);
@@ -63,11 +66,14 @@ public class ExpenseMakerImpl implements ExpenseMaker {
                 SimpleDateFormat fmt=new SimpleDateFormat("dd-MMM-yyyy");
                 expense.setDate(fmt.format(new Date(sms.getTimestampMillis())));
             }
+            if (expense.getLocation()==null){
+                expense.setLocation(locationService.getDeviceLocation());
+            }
         }
 
         return expense;
     }
-    String[] tokenize(String string){
-        return string.replaceAll("[(\\s\\.)][(\\.\\s)]"," ").split(" ");
+    String format(String string){
+        return string.toLowerCase().replaceAll("[(\\s\\.)][(\\.\\s)]"," ");
     }
 }

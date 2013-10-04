@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.sapstrt.emanager.activity.MainActivity;
 import com.sapstrt.emanager.domain.Expense;
+import com.sapstrt.emanager.service.expense.ExpenseService;
+import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
 import com.sapstrt.emanager.service.preexpense.maker.ExpenseMaker;
 import com.sapstrt.emanager.service.preexpense.maker.ExpenseMakerImpl;
 import com.sapstrt.emanager.service.preexpense.filter.MessageFilter;
@@ -35,8 +37,9 @@ public class SmsReceiver extends BroadcastReceiver {
                 if (messageFilter.isUsefulMessage(sms)){
                     Expense expense=maker.createExpense(sms);
                     if (expense!=null){
-                        Toast.makeText(context,expense.toString(),Toast.LENGTH_LONG).show();
-                        notificationService.sendSmallNotification(context,MainActivity.class,"New Expense waiting for approval.");
+                        ExpenseService expenseService=new ExpenseServiceImpl(context);
+                        if (expenseService.createNewExpense(expense))
+                            notificationService.sendSmallNotification(context,MainActivity.class,"New Expense waiting for approval.");
                     }
                 }
             }

@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by vvarma on 9/29/13.
  */
-public class DateParser implements Parser {
+public class DateParser extends AbstractParser implements Parser {
     List<String> keywords;
     List<String> dateFormats;
     public DateParser() {
@@ -24,11 +24,11 @@ public class DateParser implements Parser {
     }
 
 
-    public Map.Entry<String, String> parseInformationFromText(String[] messageTokens) {
+    public Map.Entry<String, String> parseInformationFromText(String messageTokens) {
         Map.Entry<String,String> dateEntry=null;
         for (String keyword:keywords){
             int index=-1;
-            List<String> tokens= Arrays.asList(messageTokens);
+            List<String> tokens= Arrays.asList(tokenise(messageTokens));
             if ((index=tokens.indexOf(keyword))>=0){
                 String tempDate=null;
                 SimpleDateFormat tempFmt=null;

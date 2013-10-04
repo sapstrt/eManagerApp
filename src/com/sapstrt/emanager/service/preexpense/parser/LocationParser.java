@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by vvarm1 on 10/1/13.
  */
-public class LocationParser implements Parser {
+public class LocationParser extends AbstractParser implements Parser {
     List<String> keywords;
 
     public LocationParser() {
@@ -19,16 +19,18 @@ public class LocationParser implements Parser {
     }
 
 
-    public Map.Entry<String, String> parseInformationFromText(String[] messageTokens) {
-        List<String> tokens= Arrays.asList(messageTokens);
+    public Map.Entry<String, String> parseInformationFromText(String messageTokens) {
+        List<String> tokens= Arrays.asList(tokenise(messageTokens));
         Map.Entry<String,String> locationEntry=null;
         for (String keyword:keywords){
             int index=-1;
             String loc;
             if((index=tokens.indexOf(keyword))>=0){
                 if ((loc=tokens.get(index+1))!=null){
-                    locationEntry=new AbstractMap.SimpleEntry<>("location",loc);
-                    break;
+                    if (locationEntry==null)
+                        locationEntry=new AbstractMap.SimpleEntry<>("location",loc);
+                    else
+                        locationEntry.setValue(locationEntry.getValue()+" "+ loc);
                 }
             }
         }
