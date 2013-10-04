@@ -64,8 +64,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 
     public boolean createNewExpense(Expense expense) {
-        if (expense!=null)
-            if (validateExpense(expense)){
+        if (validateExpense(expense)){
             expenseDataSource.createExpense(expense);
             return true;
         }
@@ -74,7 +73,8 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     private boolean validateExpense(Expense expense) {
         if (expense!=null)
-
+            if(expense.getAmount()!=null&&expense.getDate()!=null&&expense.getMode()!=null)
+                return true;
         return false;
     }
 
