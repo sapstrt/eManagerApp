@@ -31,6 +31,22 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.example.emanager.MainActivity" />
         </activity>
+        <activity
+                android:name=".activity.GetConfigurationActivity"
+                android:label="@string/title_activity_get_configuration"
+                android:parentActivityName="com.example.emanager.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.emanager.MainActivity" />
+        </activity>
+        <activity
+                android:name=".activity.SelectBanksActivity"
+                android:label="@string/title_activity_select_bank"
+                android:parentActivityName="com.example.emanager.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.emanager.MainActivity" />
+        </activity>
         <receiver android:name=".service.util.SmsReceiver"
                   android:enabled="true">
             <intent-filter >

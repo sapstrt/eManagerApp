@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/welcome"
+            android:text="@string/importSms"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center"
+            />
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content">
+    <Button
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Import"
+            android:id="@+id/importButton"
+            android:layout_gravity="left|center_vertical"/>
+
+    <Button
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:id="@+id/skipButton"
+            android:layout_gravity="right|center_vertical"/>
+</LinearLayout>
+
+</LinearLayout>

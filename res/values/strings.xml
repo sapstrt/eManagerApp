@@ -14,6 +14,9 @@
     <string name="note">Note</string>
     <string name="date">Date</string>
     <string name="title_activity_add_expense">Add Expense</string>
+    <string name="title_activity_get_configuration">Get Configuration</string>
+    <string name="title_activity_select_bank">Select Bank</string>
     <string name="location">Location</string>
     <string name="mode">Mode</string>
+    <string name="importSms">Would you like import older messages from your phone? </string>
 </resources>
