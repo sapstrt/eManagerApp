@@ -5,10 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.widget.Toast;
 
 
-import com.sapstrt.emanager.activity.MainActivity;
+
+import com.sapstrt.emanager.activity.DrawerActivity;
 import com.sapstrt.emanager.domain.Expense;
 import com.sapstrt.emanager.service.expense.ExpenseService;
 import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
@@ -39,7 +39,7 @@ public class SmsReceiver extends BroadcastReceiver {
                     if (expense!=null){
                         ExpenseService expenseService=new ExpenseServiceImpl(context);
                         if (expenseService.createNewExpense(expense))
-                            notificationService.sendSmallNotification(context,MainActivity.class,"New Expense waiting for approval.");
+                            notificationService.sendSmallNotification(context,DrawerActivity.class,"New Expense waiting for approval.");
                     }
                 }
             }
