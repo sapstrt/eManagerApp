@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by vvarma on 10/3/13.
  */
-public class ModeParser implements Parser {
+public class ModeParser extends AbstractParser implements Parser {
     List<String> keywords;
 
     public ModeParser() {
@@ -18,18 +18,30 @@ public class ModeParser implements Parser {
         keywords.add("credit card");
         keywords.add("debit card");
         keywords.add("atm");
+        keywords.add("cash");
     }
 //case sensitive and regex cases !
-    public Map.Entry<String, String> parseInformationFromText(String[] messageTokens) {
+    public Map.Entry<String, String> parseInformationFromText(String messageTokens) {
         Map.Entry<String,String> modeEntry=null;
-        List<String> tokens= Arrays.asList(messageTokens);
+        String key=null;
         for (String keyword:keywords){
-            int index=-1;
-            if ((index=tokens.indexOf(keyword))>=0){
-                modeEntry=new AbstractMap.SimpleEntry<>("mode",keyword);
+            if (messageTokens.contains(keyword)){
+                key=keyword;
                 break;
             }
         }
+        if (key!=null)
+            switch (key){
+                case "credit card":
+                    modeEntry=new AbstractMap.SimpleEntry<>("mode","credit card");
+                    break;
+                case "debit card":
+                    modeEntry=new AbstractMap.SimpleEntry<>("mode","debit card");
+                    break;
+                case "cash":
+                case "atm":
+                    modeEntry=new AbstractMap.SimpleEntry<>("mode","cash");
+            }
         return modeEntry;
     }
 }

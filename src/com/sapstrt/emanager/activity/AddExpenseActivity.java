@@ -42,7 +42,7 @@ public class AddExpenseActivity extends Activity implements View.OnClickListener
             expenseService.createNewExpense(expense);
 
         }
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,DrawerActivity.class);
         this.startActivity(intent);
     }
 }

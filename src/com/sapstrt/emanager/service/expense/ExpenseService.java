@@ -13,7 +13,7 @@ public interface ExpenseService {
 
     public List<Expense> getAllExpenses();
     public List<Expense> searchExpenseByName( String name);
-    public void createNewExpense(Expense expense);
+    public boolean createNewExpense(Expense expense);
     public void updateExpense(Expense expense);
     public void deleteExpense(Expense expense);
     public List<String> prepareListDataHeader();

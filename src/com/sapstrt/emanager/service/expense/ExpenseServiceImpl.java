@@ -63,11 +63,19 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
 
-    public void createNewExpense(Expense expense) {
-        if (null != expense)
+    public boolean createNewExpense(Expense expense) {
+        if (validateExpense(expense)){
             expenseDataSource.createExpense(expense);
-        else
-            throw new ExpenseNotFoundException  (("Expense Not Found"));
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validateExpense(Expense expense) {
+        if (expense!=null)
+            if(expense.getAmount()!=null&&expense.getDate()!=null&&expense.getMode()!=null)
+                return true;
+        return false;
     }
 
 

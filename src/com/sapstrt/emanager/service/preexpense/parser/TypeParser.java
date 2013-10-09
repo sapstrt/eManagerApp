@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Created by vvarma on 10/3/13.
  */
-public class TypeParser implements Parser {
+public class TypeParser extends AbstractParser implements Parser {
     List<String> keywords;
 
     public TypeParser() {
@@ -22,18 +22,19 @@ public class TypeParser implements Parser {
     }
 
     @Override
-    public Map.Entry<String, String> parseInformationFromText(String[] messageTokens) {
+    public Map.Entry<String, String> parseInformationFromText(String messageTokens) {
         Map.Entry<String,String> typeEntry=null;
-        List<String> tokens= Arrays.asList(messageTokens);
         String key=null;
         for (String keyword:keywords){
-            for (String token:tokens){
-                if (keyword.equals(token)){
-                    if (tokens.get(tokens.indexOf(token)+1)!=null&&tokens.get(tokens.indexOf(token)+1).equals("card"))
-                        continue;
-                    key=keyword;
-                    break;
+            if (messageTokens.contains(keyword)){
+                if (keyword.equals("credit")||keyword.equals("debit")){
+                    List<String> tokens=Arrays.asList(messageTokens.split(" "));
+                    int index=tokens.indexOf(keyword);
+                    if (index+1<tokens.size())
+                        if (tokens.get(index+1).equals("card"))
+                            continue;
                 }
+                key=keyword;
             }
         }
         if (key!=null)
@@ -51,4 +52,5 @@ public class TypeParser implements Parser {
         }
         return typeEntry;
     }
+
 }
