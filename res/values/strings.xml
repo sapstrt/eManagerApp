@@ -16,4 +16,6 @@
     <string name="title_activity_add_expense">Add Expense</string>
     <string name="location">Location</string>
     <string name="mode">Mode</string>
+    <string name="addExpense">ADD EXPENSE</string>
+    <string name="pick_date">Pick Date</string>
 </resources>
