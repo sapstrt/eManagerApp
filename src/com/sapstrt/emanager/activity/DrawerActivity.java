@@ -1,6 +1,7 @@
 package com.sapstrt.emanager.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.sapstrt.emanager.domain.DateComparator;
 import com.sapstrt.emanager.domain.Expense;
 import com.sapstrt.emanager.domain.LocationComparator;
 import com.sapstrt.emanager.domain.ModeComparator;
+import com.sapstrt.emanager.service.configuration.Configure;
+import com.sapstrt.emanager.service.configuration.InterFileService;
 import com.sapstrt.emanager.service.expense.ExpenseService;
 import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
 import com.sapstrt.emanager.service.util.NotificationService;
@@ -31,6 +34,7 @@ public class DrawerActivity extends Activity implements View.OnClickListener {
 
 
     ExpenseService expenseService;
+    Configure configurer=new Configure();
     NotificationService notificationService=new NotificationService();
     List<Expense> expenseList;
     TableLayout tableLayout;
@@ -39,6 +43,11 @@ public class DrawerActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        InterFileService fileService=new InterFileService();
+        fileService.createInternalFile(this);
+        boolean isCofigured=configurer.getConfiguration(this);
+        if(isCofigured==true)
+        {
         notificationService.clearAllNotifications(this);
         setContentView(R.layout.navigation_drawer);
         expenseService = new ExpenseServiceImpl(this);
@@ -52,6 +61,12 @@ public class DrawerActivity extends Activity implements View.OnClickListener {
 
         Button addButton=(Button)findViewById(R.id.addButton);
         addButton.setOnClickListener(this);
+        }else
+        {
+            //starting the configuration activity
+            Intent intent = new Intent(this, GetConfigurationActivity.class);
+            this.startActivity(intent);
+        }
 
 
 
@@ -158,6 +173,23 @@ public class DrawerActivity extends Activity implements View.OnClickListener {
                     TableRow.LayoutParams.MATCH_PARENT));
 
         }
+    }
+
+    protected void onResume() {
+        super.onResume();
+        /*if(configurer.getConfiguration(this))
+        {
+            listView = (ExpandableListView) findViewById(R.id.lvExp);
+            listDataHeader=expenseService.prepareListDataHeader();
+            listDataChild=expenseService.prepareListDataMap();
+            if (!listDataHeader.isEmpty() && !listDataChild.isEmpty()) {
+                expListAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+                listView.setAdapter(expListAdapter);
+            } else {
+                View welcomeMsg = findViewById(R.id.welcome);
+                listView.setEmptyView(welcomeMsg);
+            }
+        }*/
     }
     @Override
     public void onClick(View view) {

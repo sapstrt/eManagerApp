@@ -19,16 +19,15 @@ public class FileReader {
         try {
             in=c.openFileInput("config_file");
             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-
             String fileData=reader.readLine();
             isConfigured=fileData.substring(fileData.indexOf("=")+1);
+
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            return "false";
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return  isConfigured;
     }
 }

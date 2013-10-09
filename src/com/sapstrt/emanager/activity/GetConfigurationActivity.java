@@ -43,7 +43,7 @@ public class GetConfigurationActivity extends Activity implements View.OnClickLi
     {
         Uri uri = Uri.parse("content://sms/inbox");
         Cursor c= getContentResolver().query(uri, null, null ,null,null);
-        ImportSms smsImporter=new ImportSms();
+        ImportSms smsImporter=ImportSms.getInstance();
         startManagingCursor(c);
         smsImporter.readSMSFromPhone(uri,c);
     }

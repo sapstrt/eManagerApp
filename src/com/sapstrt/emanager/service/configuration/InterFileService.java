@@ -18,19 +18,21 @@ public class InterFileService {
 
         FileOutputStream fos = null;
         FileReader reader=new FileReader();
-        if(reader.readFile(context).equalsIgnoreCase("false"))
-        {
-        try {
-            fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
-            fos.write(string.getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+       if(reader.readFile(context).equalsIgnoreCase("false"))
+            {
+                try {
+                    fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+                    fos.write(string.getBytes());
+                    fos.close();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        }
-    }
+
+
 
         public void writeInternalFile(Context context)
         {

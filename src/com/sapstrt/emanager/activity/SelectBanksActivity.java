@@ -30,13 +30,13 @@ public class SelectBanksActivity extends Activity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_banks);
         ListView lv = (ListView) findViewById(R.id.listView1);
-        ImportSms smsImporter = new ImportSms();
-        List<String> banksList = new ArrayList<>();
+        ImportSms smsImporter = ImportSms.getInstance();
+        List<String> banksList = null;
        /* banksList.add("CITI");
         banksList.add("HDFC");
         banksList.add("SBI");
         banksList.add("ICICI");*/
-        banksList = smsImporter.getBanksFromMessages();
+        banksList = new ArrayList<>(smsImporter.getBanksFromMessages());
         lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, banksList));
         lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         Button btn = (Button) findViewById(R.id.button1);
@@ -60,7 +60,7 @@ public class SelectBanksActivity extends Activity implements View.OnClickListene
         fileWriter.writeInternalFile(this);
         settingsFileWriter.writeToSettingsFile(this, banksSelected);
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, DrawerActivity.class);
         this.startActivity(intent);
 
     }
