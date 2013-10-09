@@ -24,6 +24,8 @@ public class MessageFilterImpl implements MessageFilter {
         List<String> addresses=null;
         addresses=new ArrayList<>();
         addresses.add("990");
+        addresses.add("7406260406");
+        addresses.add("+917406280072");
         addresses.add("111");
         return addresses;
     }
