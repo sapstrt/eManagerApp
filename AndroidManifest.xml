@@ -9,6 +9,8 @@
         android:targetSdkVersion="17" />
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -26,26 +28,26 @@
         <activity
                 android:name=".activity.AddExpenseActivity"
                 android:label="@string/title_activity_add_expense"
-                android:parentActivityName="com.example.emanager.MainActivity">
+                android:parentActivityName=".MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.example.emanager.MainActivity" />
+                    android:value=".MainActivity" />
         </activity>
         <activity
                 android:name=".activity.GetConfigurationActivity"
                 android:label="@string/title_activity_get_configuration"
-                android:parentActivityName="com.example.emanager.MainActivity">
+                android:parentActivityName=".MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.example.emanager.MainActivity" />
+                    android:value=".MainActivity" />
         </activity>
         <activity
                 android:name=".activity.SelectBanksActivity"
                 android:label="@string/title_activity_select_bank"
-                android:parentActivityName="com.example.emanager.MainActivity">
+                android:parentActivityName=".MainActivity">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.example.emanager.MainActivity" />
+                    android:value=".MainActivity" />
         </activity>
         <receiver android:name=".service.util.SmsReceiver"
                   android:enabled="true">

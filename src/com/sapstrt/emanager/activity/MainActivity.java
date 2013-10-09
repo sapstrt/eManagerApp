@@ -11,6 +11,7 @@ import android.widget.ExpandableListView;
 import com.sapstrt.emanager.R;
 import com.sapstrt.emanager.service.adapter.ExpandableListAdapter;
 import com.sapstrt.emanager.service.configuration.Configure;
+import com.sapstrt.emanager.service.configuration.InterFileService;
 import com.sapstrt.emanager.service.expense.ExpenseService;
 import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
 import com.sapstrt.emanager.service.util.NotificationService;
@@ -33,6 +34,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        InterFileService fileService=new InterFileService();
+        fileService.createInternalFile(this);
         boolean isCofigured=configurer.getConfiguration(this);
 
 
