@@ -181,6 +181,7 @@ public class DrawerActivity extends Activity implements View.OnClickListener {
                 tableLayout.removeAllViews();
                 tableLayout.invalidate();
                 tableLayout.refreshDrawableState();
+                expenseList=expenseService.getAllExpenses();
                 createTable();
                 break;
             case R.id.date:
