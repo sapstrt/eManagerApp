@@ -55,7 +55,6 @@ public class ExpenseMakerImpl implements ExpenseMaker {
                         break;
                     case "location":expense.setLocation(map.get(key));
                         break;
-                    //case "type":expense.setType(map.get(key));
                     case "mode":expense.setMode(map.get(key));
                         break;
                     default:
