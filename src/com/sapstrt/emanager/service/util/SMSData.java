@@ -1,12 +1,15 @@
 package com.sapstrt.emanager.service.util;
 
+import java.io.Serializable;
+
 /**
  * Created by cambas on 10/5/13.
  */
-public class SMSData {
+public class SMSData implements Serializable{
 
     private String messageAddress;
     private String messageBody;
+    private Long timseStamp;
 
     public String getMessageAddress() {
         return messageAddress;
@@ -22,5 +25,13 @@ public class SMSData {
 
     public void setMessageBody(String messageBody) {
         this.messageBody = messageBody;
+    }
+
+    public Long getTimseStamp() {
+        return timseStamp;
+    }
+
+    public void setTimseStamp(Long timseStamp) {
+        this.timseStamp = timseStamp;
     }
 }

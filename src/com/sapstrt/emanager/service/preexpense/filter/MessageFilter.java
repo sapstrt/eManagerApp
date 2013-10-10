@@ -1,6 +1,9 @@
 package com.sapstrt.emanager.service.preexpense.filter;
 
+import android.content.Context;
 import android.telephony.SmsMessage;
+
+import com.sapstrt.emanager.service.util.SMSData;
 
 import java.util.List;
 
@@ -9,5 +12,6 @@ import java.util.List;
  */
 public interface MessageFilter {
 
-    boolean isUsefulMessage(SmsMessage sms);
+    boolean isUsefulMessage(SmsMessage sms,Context context);
+    boolean isUsefulMessage(SMSData sms,Context context);
 }

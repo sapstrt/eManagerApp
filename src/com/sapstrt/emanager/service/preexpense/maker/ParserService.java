@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
 
 /**
  * Created by vvarm1 on 10/7/13.
@@ -54,7 +54,6 @@ public class ParserService {
     private Map<String, String> generateKeyMapFromMessage(String message){
         message=message+" ";
         message = formatMessage(message.toLowerCase());
-        System.out.println(message);
         String[] splitedMsg = message.split("[ ]+");
         Map<String, String> result = new HashMap<>();
         int i = 0;

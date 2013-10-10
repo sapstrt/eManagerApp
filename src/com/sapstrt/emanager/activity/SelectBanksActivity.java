@@ -3,6 +3,7 @@ package com.sapstrt.emanager.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.sapstrt.emanager.R;
 import com.sapstrt.emanager.service.configuration.InterFileService;
 import com.sapstrt.emanager.service.configuration.SettingsFileWriter;
+import com.sapstrt.emanager.service.preexpense.maker.ExpenseMakerService;
 import com.sapstrt.emanager.service.util.ImportSms;
 
 import java.util.ArrayList;
@@ -25,17 +27,13 @@ import java.util.TreeMap;
  */
 public class SelectBanksActivity extends Activity implements View.OnClickListener {
 
-
+    ImportSms smsImporter;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_banks);
         ListView lv = (ListView) findViewById(R.id.listView1);
-        ImportSms smsImporter = ImportSms.getInstance();
+         smsImporter = ImportSms.getInstance();
         List<String> banksList = null;
-       /* banksList.add("CITI");
-        banksList.add("HDFC");
-        banksList.add("SBI");
-        banksList.add("ICICI");*/
         banksList = new ArrayList<>(smsImporter.getBanksFromMessages());
         lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, banksList));
         lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -54,12 +52,14 @@ public class SelectBanksActivity extends Activity implements View.OnClickListene
             if (sp.valueAt(i) == true) {
                 String s = ((TextView) lv.getChildAt(i)).getText().toString();
                 banksSelected.put("Bank" + i, s);
-
             }
         }
         fileWriter.writeInternalFile(this);
         settingsFileWriter.writeToSettingsFile(this, banksSelected);
-
+        Log.d("com.sapstrt.emanager","creating bundle "+ smsImporter.getSmsList().size());
+        Intent serviceStarter=new Intent(this, ExpenseMakerService.class);
+        serviceStarter.putExtra("messages",smsImporter.getSmsList());
+        this.startService(serviceStarter);
         Intent intent = new Intent(this, DrawerActivity.class);
         this.startActivity(intent);
 

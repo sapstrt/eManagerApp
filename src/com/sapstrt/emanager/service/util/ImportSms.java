@@ -23,7 +23,11 @@ public class ImportSms {
         return importSms;
     }
 
-    List<SMSData> smsList = new ArrayList<>();
+    ArrayList<SMSData> smsList = new ArrayList<>();
+
+    public ArrayList<SMSData> getSmsList() {
+        return smsList;
+    }
 
     //reads All sms from phone
     public void readSMSFromPhone(Uri uri, Cursor c) {
@@ -36,6 +40,7 @@ public class ImportSms {
                 address = c.getString(c.getColumnIndexOrThrow("address")).toString();
                 if (p.matcher(address).matches()) {
                     sms.setMessageBody(c.getString(c.getColumnIndexOrThrow("body")).toString());
+                    sms.setTimseStamp(Long.valueOf(c.getInt(c.getColumnIndexOrThrow("date"))));
                     sms.setMessageAddress(address);
                     smsList.add(sms);
                 }

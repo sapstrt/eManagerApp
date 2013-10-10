@@ -18,6 +18,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <service android:name=".service.preexpense.maker.ExpenseMakerService" />
         <activity
             android:name=".activity.DrawerActivity"
             android:label="@string/app_name" >
