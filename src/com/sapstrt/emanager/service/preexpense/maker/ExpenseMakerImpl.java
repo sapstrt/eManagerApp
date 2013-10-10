@@ -3,48 +3,30 @@ package com.sapstrt.emanager.service.preexpense.maker;
 import android.telephony.SmsMessage;
 
 import com.sapstrt.emanager.domain.Expense;
-import com.sapstrt.emanager.service.preexpense.parser.AmountParser;
-import com.sapstrt.emanager.service.preexpense.parser.DateParser;
-import com.sapstrt.emanager.service.preexpense.parser.LocationParser;
-import com.sapstrt.emanager.service.preexpense.parser.ModeParser;
-import com.sapstrt.emanager.service.preexpense.parser.Parser;
-import com.sapstrt.emanager.service.preexpense.parser.TypeParser;
 import com.sapstrt.emanager.service.util.LocationService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by vvarma on 9/29/13.
  */
 public class ExpenseMakerImpl implements ExpenseMaker {
-    Set<Parser> parsers;
-    LocationService locationService;
+   LocationService locationService;
+    ParserService parserService;
 
     public ExpenseMakerImpl() {
         locationService=new LocationService();
-        parsers=new HashSet<>();
-        parsers.add(new AmountParser());
-        parsers.add(new DateParser());
-        parsers.add(new LocationParser());
-        parsers.add(new ModeParser());
-        parsers.add(new TypeParser());
+        parserService=new ParserService();
+
     }
 
 
     public Expense createExpense(SmsMessage sms) {
         Expense expense=null;
-        String tokens= format(sms.getMessageBody());
-        Map<String,String> map=new HashMap<>();
-        for (Parser parser:parsers){
-            Map.Entry<String,String> tempEntry=parser.parseInformationFromText(tokens);
-            if(tempEntry!=null)
-                map.put(tempEntry.getKey(),tempEntry.getValue());
-        }
+        Map<String,String> map=parserService.getExpenseMapFromMessage(sms.getMessageBody());
+
         if (map.get("type")!=null){
             expense=new Expense();
             for (String key:map.keySet()){
@@ -72,7 +54,5 @@ public class ExpenseMakerImpl implements ExpenseMaker {
 
         return expense;
     }
-    String format(String string){
-        return string.toLowerCase().replaceAll("[(\\s\\.)][(\\.\\s)]"," ");
-    }
+
 }

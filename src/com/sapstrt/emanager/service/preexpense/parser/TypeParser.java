@@ -1,5 +1,7 @@
 package com.sapstrt.emanager.service.preexpense.parser;
 
+import com.google.android.gms.internal.br;
+
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +53,34 @@ public class TypeParser extends AbstractParser implements Parser {
                     break;
         }
         return typeEntry;
+    }
+
+    @Override
+    public Map.Entry<String, String> getExpenseMapGivenKeyWordMap(Map<String,String> keywordMap) {
+        Map.Entry<String,String> entry=null;
+        String key=null;
+        for (String keyword:keywords){
+            String val=keywordMap.get(keyword);
+            if (val!=null){
+                key=keyword;
+                break;
+            }
+
+        }
+        if (key!=null)
+            switch (key){
+                case "balance":
+                    break;
+                case "expense":
+                case "purchase":
+                case "credit":
+                    entry=new AbstractMap.SimpleEntry<>("type","credit");
+                    break;
+                case "debit":
+                    entry=new AbstractMap.SimpleEntry<>("type","debit");
+                    break;
+            }
+        return entry;
     }
 
 }

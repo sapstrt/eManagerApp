@@ -41,5 +41,22 @@ public class AmountParser extends AbstractParser implements Parser {
         return amountEntry;
     }
 
+    public Map.Entry<String, String> getExpenseMapGivenKeyWordMap(Map<String,String> keywordMap) {
+        Map.Entry<String,String> entry=null;
+        for (String keyword:keywords){
+            String val=keywordMap.get(keyword);
+            if (val!=null){
+                String[] valArr=val.split(" ");
+                try{
+                    Double.parseDouble(valArr[0]);
+                    entry=new AbstractMap.SimpleEntry<>("amount",valArr[0]);
+                    break;
+                }catch (Exception e){
+                }
+            }
+        }
+        return entry;
+    }
+
 
 }

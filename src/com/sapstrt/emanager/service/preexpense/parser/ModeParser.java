@@ -44,4 +44,30 @@ public class ModeParser extends AbstractParser implements Parser {
             }
         return modeEntry;
     }
+
+    public Map.Entry<String, String> getExpenseMapGivenKeyWordMap(Map<String,String> keywordMap) {
+        Map.Entry<String,String> entry=null;
+        String key=null;
+        for (String keyword:keywords){
+            String val=keywordMap.get(keyword);
+            if (val!=null){
+                key=keyword;
+                break;
+            }
+
+        }
+        if (key!=null)
+            switch (key){
+                case "credit card":
+                    entry=new AbstractMap.SimpleEntry<>("mode","credit card");
+                    break;
+                case "debit card":
+                    entry=new AbstractMap.SimpleEntry<>("mode","debit card");
+                    break;
+                case "cash":
+                case "atm":
+                    entry=new AbstractMap.SimpleEntry<>("mode","cash");
+            }
+        return entry;
+    }
 }

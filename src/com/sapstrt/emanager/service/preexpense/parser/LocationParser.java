@@ -36,4 +36,18 @@ public class LocationParser extends AbstractParser implements Parser {
         }
         return locationEntry;
     }
+
+    public Map.Entry<String, String> getExpenseMapGivenKeyWordMap(Map<String,String> keywordMap) {
+        Map.Entry<String,String> entry=null;
+        for (String keyword:keywords){
+            String val=keywordMap.get(keyword);
+            if (val!=null){
+                if (entry==null)
+                    entry=new AbstractMap.SimpleEntry<>("location",val);
+                else
+                    entry.setValue(entry.getValue()+val);
+            }
+        }
+        return entry;
+    }
 }

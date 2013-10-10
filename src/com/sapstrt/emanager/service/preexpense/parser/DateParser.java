@@ -51,4 +51,27 @@ public class DateParser extends AbstractParser implements Parser {
         }
         return dateEntry;
     }
+
+    public Map.Entry<String, String> getExpenseMapGivenKeyWordMap(Map<String,String> keywordMap) {
+        Map.Entry<String,String> entry=null;
+        SimpleDateFormat sdf;
+        SimpleDateFormat finalFmt=new SimpleDateFormat("dd-MMM-yyyy");
+        ParsePosition pos=new ParsePosition(0);
+        for (String keyword:keywords){
+            String val=keywordMap.get(keyword);
+            if (val!=null){
+                String[] valArr=val.split(" ");
+                for (String fmt:dateFormats){
+                    sdf=new SimpleDateFormat(fmt);
+                    sdf.setLenient(false);
+                    Date date=sdf.parse(valArr[0],pos);
+                    if (date!=null){
+                        entry=new AbstractMap.SimpleEntry<>("date",finalFmt.format(date));
+                        break;
+                    }
+                }
+            }
+        }
+        return entry;
+    }
 }
