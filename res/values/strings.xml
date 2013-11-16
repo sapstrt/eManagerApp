@@ -16,9 +16,11 @@
     <string name="title_activity_add_expense">Add Expense</string>
     <string name="location">Location</string>
     <string name="mode">Mode</string>
-    <string name="importSms">Would you like import older messages from your phone? </string>
+    <string name="importSmsAndAccounts">Do you approve to import sms and google accounts ?</string>
     <string name="addExpense">ADD EXPENSE</string>
     <string name="pick_date">Pick Date</string>
     <string name="title_activity_get_configuration">Get Configuration</string>
     <string name="title_activity_select_bank">Select Bank</string>
+   <string name="approve">Approve</string>
+    <string name="proceed">Proceed</string>
 </resources>

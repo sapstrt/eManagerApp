@@ -92,13 +92,7 @@ public class ParserService {
         }
         return retMap;
     }
-    /*public static void main(String[] args){
-        ParserService service=new ParserService();
-        String message="Credit of Rs 340 on 21-JAN-2012 using credit card at bangalore central from wokoko.";
-        Map<String,String> keyMap=new HashMap<>();
-        for(Map.Entry<String,String> entry:service.getExpenseMapFromMessage(message).entrySet())
-            System.out.println(entry.getKey() + ":" + entry.getValue());
-    }*/
+
 }
 
 

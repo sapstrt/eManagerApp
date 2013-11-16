@@ -7,7 +7,7 @@
 
     <TextView
             android:id="@+id/welcome"
-            android:text="@string/importSms"
+            android:text="@string/importSmsAndAccounts"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="center"
@@ -18,14 +18,14 @@
     <Button
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:text="Import"
+            android:text="@string/approve"
             android:id="@+id/importButton"
             android:layout_gravity="left|center_vertical"/>
 
     <Button
             android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:text="Skip"
+            android:text="@string/cancel"
             android:id="@+id/skipButton"
             android:layout_gravity="right|center_vertical"/>
 </LinearLayout>

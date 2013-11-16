@@ -61,7 +61,9 @@ public class DrawerActivity extends Activity implements View.OnClickListener {
 
         Button addButton=(Button)findViewById(R.id.addButton);
         addButton.setOnClickListener(this);
-        }else
+        }
+
+        else
         {
             //starting the configuration activity
             Intent intent = new Intent(this, GetConfigurationActivity.class);

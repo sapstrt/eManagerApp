@@ -4,12 +4,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#16711681">
     <!-- The main content view -->
     <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            >
         <ScrollView
                 android:id="@+id/layout"
                 android:layout_height="match_parent"
@@ -23,61 +25,10 @@
                      android:layout_height="match_parent"
                      android:id="@+id/main_table"
                      android:scrollbars="vertical"
-                     android:stretchColumns="1"
-                >
-            <!--<TableRow>
-                <TextView
-                        android:id="@+id/date"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date"
-                        android:onClick="onClick"
-                        android:clickable="true"
-                        android:layout_weight=".25"
-                        android:textStyle="bold"/>
-
-                <TextView
-                        android:id="@+id/amount"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/amount"
-                        android:onClick="onClick"
-                        android:clickable="true"
-                        android:layout_weight=".25"
-                        android:textStyle="bold"/>
-                <TextView
-                        android:id="@+id/location"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/location"
-                        android:onClick="onClick"
-                        android:clickable="true"
-                        android:layout_weight=".25"
-                        android:textStyle="bold"/>
-                <TextView
-                        android:id="@+id/mode"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="@string/mode"
-                        android:onClick="onClick"
-                        android:clickable="true"
-                        android:layout_weight=".25"
-                        android:textStyle="bold"/>
-            </TableRow>-->
-
-
+                     android:stretchColumns="1">
         </TableLayout>
         </ScrollView>
     </FrameLayout>
-  <!--  &lt;!&ndash; The navigation drawer &ndash;&gt;
-    <ListView android:id="@+id/left_drawer"
-              android:layout_width="240dp"
-              android:layout_height="match_parent"
-              android:layout_gravity="start"
-              android:choiceMode="singleChoice"
-              android:divider="@android:color/transparent"
-              android:dividerHeight="0dp"
-              android:background="#111"/>-->
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="vertical"
@@ -130,11 +81,6 @@
                 android:textColor="#FFFFFF"
                 />
 
-       <!-- <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pick_date"
-                android:onClick="showDatePickerDialog" />-->
 
         <EditText
                 android:layout_width="230dp"
@@ -144,11 +90,7 @@
                 android:hint="@string/location"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"/>
-<!--
-        <CalendarView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/calendarView"/>-->
+
 
         <EditText
                 android:layout_width="230dp"
@@ -172,13 +114,6 @@
                     android:layout_gravity="left|center_vertical"
                     />
 
-           <!-- <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cancel"
-                    android:id="@+id/cancelButton"
-                    android:layout_gravity="left|center_vertical"/>-->
         </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

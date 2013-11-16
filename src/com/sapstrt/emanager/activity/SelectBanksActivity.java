@@ -60,8 +60,11 @@ public class SelectBanksActivity extends Activity implements View.OnClickListene
         Intent serviceStarter=new Intent(this, ExpenseMakerService.class);
         serviceStarter.putExtra("messages",smsImporter.getSmsList());
         this.startService(serviceStarter);
-        Intent intent = new Intent(this, DrawerActivity.class);
+
+        Intent intent = new Intent(this, AccountAssociation.class);
         this.startActivity(intent);
+        /*Intent intent = new Intent(this, DrawerActivity.class);
+        this.startActivity(intent);*/
 
     }
 }

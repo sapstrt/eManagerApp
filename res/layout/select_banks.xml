@@ -6,9 +6,15 @@
 
     <ListView android:layout_height="wrap_content" android:id="@+id/listView1"
               android:layout_width="match_parent" android:divider="#00ffffff"
-              android:dividerHeight="10dp" android:layout_margin="20dp"></ListView>
+              android:dividerHeight="10dp" android:layout_margin="20dp">
+
+              </ListView>
+
+
     <Button android:text="OK" android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"></Button>
+            android:layout_gravity="center_horizontal">
+
+            </Button>
 </LinearLayout>
