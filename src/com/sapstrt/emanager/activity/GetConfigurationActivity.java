@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -23,10 +22,10 @@ public class GetConfigurationActivity extends Activity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.get_configuration);
         Button importButton = (Button) findViewById(R.id.importButton);
-        importButton.setOnClickListener((android.view.View.OnClickListener)this);
+        importButton.setOnClickListener(this);
 
         Button skipButton = (Button) findViewById(R.id.skipButton);
-        skipButton.setOnClickListener((android.view.View.OnClickListener)this);
+        skipButton.setOnClickListener(this);
 
     }
 
@@ -34,15 +33,18 @@ public class GetConfigurationActivity extends Activity implements View.OnClickLi
 
         if((view).getId()==R.id.importButton){
             importSMS();
+            Intent intent = new Intent(this,BanksAndGoogleAccountActivity.class);
+            this.startActivity(intent);
         }
-        Intent intent = new Intent(this,SelectBanksActivity.class);
-        this.startActivity(intent);
+        if((view).getId()==R.id.skipButton){
+            //code to exit app
+        }
+
     }
 
 
     private void importSMS()
     {
-        Log.d("com.sapstrt.emanager","In config activity"+"123231");
         Uri uri = Uri.parse("content://sms/inbox");
         Cursor c= getContentResolver().query(uri, null, null ,null,null);
         ImportSms smsImporter=ImportSms.getInstance();

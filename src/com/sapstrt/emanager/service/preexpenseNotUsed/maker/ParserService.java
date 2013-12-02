@@ -1,12 +1,11 @@
-package com.sapstrt.emanager.service.preexpense.maker;
+package com.sapstrt.emanager.service.preexpenseNotUsed.maker;
 
-import com.sapstrt.emanager.domain.Expense;
-import com.sapstrt.emanager.service.preexpense.parser.AmountParser;
-import com.sapstrt.emanager.service.preexpense.parser.DateParser;
-import com.sapstrt.emanager.service.preexpense.parser.LocationParser;
-import com.sapstrt.emanager.service.preexpense.parser.ModeParser;
-import com.sapstrt.emanager.service.preexpense.parser.Parser;
-import com.sapstrt.emanager.service.preexpense.parser.TypeParser;
+import com.sapstrt.emanager.service.preexpenseNotUsed.parser.AmountParser;
+import com.sapstrt.emanager.service.preexpenseNotUsed.parser.DateParser;
+import com.sapstrt.emanager.service.preexpenseNotUsed.parser.LocationParser;
+import com.sapstrt.emanager.service.preexpenseNotUsed.parser.ModeParser;
+import com.sapstrt.emanager.service.preexpenseNotUsed.parser.Parser;
+import com.sapstrt.emanager.service.preexpenseNotUsed.parser.TypeParser;
 
 import java.util.ArrayList;
 import java.util.HashMap;

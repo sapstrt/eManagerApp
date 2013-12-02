@@ -16,6 +16,6 @@ public interface ExpenseService {
     public boolean createNewExpense(Expense expense);
     public void updateExpense(Expense expense);
     public void deleteExpense(Expense expense);
-    public List<String> prepareListDataHeader();
-    public HashMap<String,List<String>> prepareListDataMap();
+/*    public List<String> prepareListDataHeader();
+    public HashMap<String,List<String>> prepareListDataMap();*/
 }

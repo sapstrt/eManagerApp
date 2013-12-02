@@ -1,9 +1,9 @@
-package com.sapstrt.emanager.service.preexpense.maker;
+package com.sapstrt.emanager.service.preexpenseNotUsed.maker;
 
 import android.telephony.SmsMessage;
 
 import com.sapstrt.emanager.domain.Expense;
-import com.sapstrt.emanager.service.util.LocationService;
+import com.sapstrt.emanager.service.util.LocationServiceNotUsed;
 import com.sapstrt.emanager.service.util.SMSData;
 
 import java.text.SimpleDateFormat;
@@ -14,11 +14,11 @@ import java.util.Map;
  * Created by vvarma on 9/29/13.
  */
 public class ExpenseMakerImpl implements ExpenseMaker {
-   LocationService locationService;
+   LocationServiceNotUsed locationServiceNotUsed;
     ParserService parserService;
 
     public ExpenseMakerImpl() {
-        locationService=new LocationService();
+        locationServiceNotUsed =new LocationServiceNotUsed();
         parserService=new ParserService();
 
     }
@@ -45,7 +45,10 @@ public class ExpenseMakerImpl implements ExpenseMaker {
                     default:
                 }
             }
-            expense.setExpenseName("Auto");
+            //expense.setExpenseName("Auto");
+            //expense.setCreatedBy();
+           // expense.setGrpId();
+
             if (expense.getDate()==null){
                 SimpleDateFormat fmt=new SimpleDateFormat("dd-MMM-yyyy");
                 expense.setDate(fmt.format(new Date(timeStamp)));

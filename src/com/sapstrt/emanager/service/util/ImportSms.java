@@ -13,17 +13,16 @@ import java.util.regex.Pattern;
  * Created by cambas on 10/5/13.
  */
 public class ImportSms {
-    private static final ImportSms importSms = new ImportSms();
-
-
     protected ImportSms() {
     }
+    private static final ImportSms importSms = new ImportSms();
 
     public static ImportSms getInstance() {
         return importSms;
     }
 
     ArrayList<SMSData> smsList = new ArrayList<>();
+    Set<String> banksList = new HashSet<>();
 
     public ArrayList<SMSData> getSmsList() {
         return smsList;
@@ -51,7 +50,6 @@ public class ImportSms {
     }
 
     public Set<String> getBanksFromMessages() {
-        Set<String> banksList = new HashSet<>();
         Set<String> bankSenderSet = new HashSet<>();
         for (SMSData sms : smsList) {
             String address = sms.getMessageAddress().toUpperCase();
@@ -63,9 +61,7 @@ public class ImportSms {
             if (!banksList.contains(bankName))
                 banksList.add(bankName);
         }
-
-
-        return banksList;
+       return banksList;
 
     }
 

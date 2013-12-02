@@ -27,13 +27,13 @@ import java.util.TreeMap;
 /**
  * Created by pteltu on 11/16/13.
  */
-public class AccountAssociation extends Activity implements View.OnClickListener {
+public class AccountAssociationNotUsed extends Activity implements View.OnClickListener {
     private String TAG="com.sapstrt.resttokenmyprojectTag";
     ListView accList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.select_accounts);
+        setContentView(R.layout.select_accountsNotUsed);
         accList = (ListView) findViewById(R.id.accountList);
         ArrayList<String> accountNames=getAccountNames();
 
@@ -46,7 +46,7 @@ public class AccountAssociation extends Activity implements View.OnClickListener
     public void onClick(View view) {
 
         InterFileService fileWriter = new InterFileService();
-        SettingsFileWriter settingsFileWriter = SettingsFileWriter.getInstance();
+        SettingsFileWriter settingsFileWriter = new SettingsFileWriter();
         Map<String, String> accountSelected = new TreeMap<>();
         int i = accList.getCheckedItemPosition();
         String s = ((TextView) accList.getChildAt(i)).getText().toString();
@@ -63,7 +63,7 @@ public class AccountAssociation extends Activity implements View.OnClickListener
             String response=httpService.getResponseString();
 
             if(response.equalsIgnoreCase("User Authenticated!")){
-                Intent intentMainActivity = new Intent(this, DrawerActivity.class);
+                Intent intentMainActivity = new Intent(this, MainActivity.class);
                 this.startActivity(intentMainActivity);
             }
         } catch (IOException e) {

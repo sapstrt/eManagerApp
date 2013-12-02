@@ -8,22 +8,22 @@ import android.telephony.SmsMessage;
 
 
 
-import com.sapstrt.emanager.activity.DrawerActivity;
+import com.sapstrt.emanager.activity.MainActivity;
 import com.sapstrt.emanager.domain.Expense;
 import com.sapstrt.emanager.service.configuration.Configure;
 import com.sapstrt.emanager.service.expense.ExpenseService;
 import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
-import com.sapstrt.emanager.service.preexpense.maker.ExpenseMaker;
-import com.sapstrt.emanager.service.preexpense.maker.ExpenseMakerImpl;
-import com.sapstrt.emanager.service.preexpense.filter.MessageFilter;
-import com.sapstrt.emanager.service.preexpense.filter.MessageFilterImpl;
+import com.sapstrt.emanager.service.preexpenseNotUsed.maker.ExpenseMaker;
+import com.sapstrt.emanager.service.preexpenseNotUsed.maker.ExpenseMakerImpl;
+import com.sapstrt.emanager.service.preexpenseNotUsed.filter.MessageFilter;
+import com.sapstrt.emanager.service.preexpenseNotUsed.filter.MessageFilterImpl;
 
 /**
  * Created by vvarm1 on 9/25/13.*/
 
 
-public class SmsReceiver extends BroadcastReceiver {
-    NotificationService notificationService=new NotificationService();
+public class SmsReceiverNotUsed extends BroadcastReceiver {
+    NotificationServiceNotUsed notificationServiceNotUsed =new NotificationServiceNotUsed();
     MessageFilter messageFilter=new MessageFilterImpl();
     ExpenseMaker maker=new ExpenseMakerImpl();
     Configure configure=new Configure();
@@ -43,7 +43,7 @@ public class SmsReceiver extends BroadcastReceiver {
                         if (expense!=null){
                             ExpenseService expenseService=new ExpenseServiceImpl(context);
                             if (expenseService.createNewExpense(expense))
-                                notificationService.sendSmallNotification(context,DrawerActivity.class,"New Expense waiting for approval.");
+                                notificationServiceNotUsed.sendSmallNotification(context,MainActivity.class,"New Expense waiting for approval.");
                         }
                     }
                 }

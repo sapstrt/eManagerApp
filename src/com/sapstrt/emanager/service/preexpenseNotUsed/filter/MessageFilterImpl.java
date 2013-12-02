@@ -1,14 +1,12 @@
-package com.sapstrt.emanager.service.preexpense.filter;
+package com.sapstrt.emanager.service.preexpenseNotUsed.filter;
 
 import android.content.Context;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
 import com.sapstrt.emanager.service.configuration.FileReader;
-import com.sapstrt.emanager.service.preexpense.filter.MessageFilter;
 import com.sapstrt.emanager.service.util.SMSData;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

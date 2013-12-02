@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:background="#0489B1" android:layout_width="fill_parent"
+              android:layout_width="fill_parent"
               android:layout_height="fill_parent" android:orientation="vertical">
 
 
-    <ListView android:layout_height="wrap_content" android:id="@+id/listView1"
-              android:layout_width="match_parent" android:divider="#00ffffff"
-              android:dividerHeight="10dp" android:layout_margin="20dp"></ListView>
-    <Button android:text="OK" android:id="@+id/button1"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chooseBankName"
+        android:id="@+id/textView" />
+
+    <ListView android:layout_height="181dp"
+              android:id="@+id/bankList"
+              android:layout_width="wrap_content"
+              android:divider="#00ffffff"
+              android:dividerHeight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="-11dp"
+        android:layout_marginBottom="20dp">
+    </ListView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/chooseGoogleAccount"
+        android:id="@+id/textView2" />
+
+    <ListView
+        android:layout_height="199dp"
+        android:id="@+id/accountList"
+        android:layout_width="wrap_content"
+        android:dividerHeight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="-3dp"
+        android:layout_marginBottom="31dp">
+    </ListView>
+
+    <Button android:text="@string/proceed"
+            android:id="@+id/proceed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"></Button>
+            android:layout_gravity="center_horizontal">
+
+    </Button>
 </LinearLayout>

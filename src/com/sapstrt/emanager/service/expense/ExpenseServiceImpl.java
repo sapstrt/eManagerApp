@@ -22,7 +22,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
 
 
-    public List<String> prepareListDataHeader(){
+  /*  public List<String> prepareListDataHeader(){
         List<Expense> expenseList=expenseDataSource.getAllExpense();
         List<String> expenseNameList =new ArrayList<String>();
         for(Expense e:expenseList){
@@ -44,7 +44,7 @@ public class ExpenseServiceImpl implements ExpenseService {
             ExpenseMap.put(e.getExpenseName(),childList);
         }
         return ExpenseMap;
-    }
+    }*/
 
     public List<Expense> getAllExpenses() {
         List<Expense> expenseList = new ArrayList<Expense>();

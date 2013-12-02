@@ -2,6 +2,7 @@ package com.sapstrt.emanager.service.configuration;
 
 import android.content.Context;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,10 +13,9 @@ import java.util.Map;
  */
 public class SettingsFileWriter {
 
-    public void writeToSettingsFile(Context c, Map<String,String> banksList)
+    String FILENAME = "settings_file";
+    public void writeToSettingsFile(Context context , Map<String,String> banksList)
     {
-        String FILENAME = "settings_file";
-
 
         FileOutputStream fos = null;
          try {
@@ -23,7 +23,7 @@ public class SettingsFileWriter {
              for (Map.Entry<String, String> entry : banksList.entrySet())
              {
                 String settingsText=entry.getKey()+"="+entry.getValue();
-                fos = c.openFileOutput(FILENAME, Context.MODE_PRIVATE);
+                fos = context.openFileOutput(FILENAME, Context.MODE_PRIVATE);
                 fos.write(settingsText.getBytes());
                 fos.close();
              }
@@ -33,7 +33,31 @@ public class SettingsFileWriter {
                 e.printStackTrace();
             }
 
+    }
+    public String getDataFromSettingsFile(Context context,String key){
+        String value=null;
 
+        FileInputStream fis=null;
+        try {
+            fis= context.openFileInput(FILENAME);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        int content;
+        try {
+            while ((content = fis.read()) != -1) {
 
+                String entry=(char) content+"";
+                String entryKey=entry.substring(0,entry.indexOf('='));
+                String entryValue=entry.substring(entry.indexOf('=')+1);
+                if(entryKey.equalsIgnoreCase(key)){
+                    return entryValue;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return value;
     }
 }

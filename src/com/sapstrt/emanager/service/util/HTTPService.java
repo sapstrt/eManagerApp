@@ -10,10 +10,12 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,7 +33,7 @@ import java.util.List;
 public class HTTPService {
 
     private String TAG="com.sapstrt.resttokenmyprojectTag";
-    private HttpClient httpClient;
+    private HttpClient httpClient=new DefaultHttpClient();;
     private HttpPost httpPost;
     private HttpResponse httpResponse;
     private String responseString = null;
@@ -47,12 +49,22 @@ public class HTTPService {
             return informationToSever;
         }
 
+
+
        public void sendTokenToServer( String token) throws IOException {
-                httpClient=new DefaultHttpClient();
+
                 this.httpPost = new HttpPost("http://10.209.32.27:9090/eManager-1.0-SNAPSHOT/app/user/create");
                 try {
                         this.httpPost.addHeader("idToken",token);
                         this.httpResponse = this.httpClient.execute(this.httpPost);
+                        String response=getResponseString();
+                        if(response.equalsIgnoreCase("User Authenticated!")){
+
+
+                         }
+                        else{
+
+                        }
                 }
                 catch (UnsupportedEncodingException e) {
                     Log.e(TAG, e.toString());
@@ -63,10 +75,11 @@ public class HTTPService {
                 catch (IOException e) {
                     Log.e(TAG, e.toString());
                 }
+
        }
 
     public void sendExpenseToServer(String token,Expense expense){
-        httpClient=new DefaultHttpClient();
+
         this.httpPost = new HttpPost("http://10.209.32.27:9090/eManager-1.0-SNAPSHOT/app/"); ///url for sending 1 expense
         try {
             this.httpPost.addHeader("idToken",token);
@@ -90,7 +103,7 @@ public class HTTPService {
 
     }
     public void sendExpensesToServer(String token,List<Expense> expenseList){
-        httpClient=new DefaultHttpClient();
+
         this.httpPost = new HttpPost("http://10.209.32.27:9090/eManager-1.0-SNAPSHOT/app/"); ///url for sendingall expenses
         try {
             this.httpPost.addHeader("idToken",token);
@@ -104,6 +117,14 @@ public class HTTPService {
 
             this.httpPost.setEntity(new UrlEncodedFormEntity(params,HTTP.UTF_8));
             this.httpResponse = this.httpClient.execute(this.httpPost);
+            String response=getResponseString();
+            if(response.equalsIgnoreCase("All the expenses added!")){
+
+
+            }
+            else{
+
+            }
         }
         catch (UnsupportedEncodingException e) {
             Log.e(TAG, e.toString());
@@ -137,6 +158,24 @@ public class HTTPService {
         }
         return null;
     }
+
+
+     public Integer getGrpIdFromServer(String token){
+         Integer grpId=null;
+         try {
+
+             String getURL = "";// get url for grpId
+             this.httpPost = new HttpPost("");
+             this.httpPost.addHeader("idToken",token);
+             this.httpResponse = this.httpClient.execute(this.httpPost);
+             grpId= Integer.valueOf(getResponseString());
+
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+             return grpId;
+
+     }
 
 
 

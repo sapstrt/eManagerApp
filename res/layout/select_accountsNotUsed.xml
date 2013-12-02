@@ -4,14 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:layout_height="wrap_content"
-        android:id="@+id/accountList"
-        android:layout_width="match_parent"
-        android:dividerHeight="10dp"
-        android:layout_margin="20dp"
-        >
-    </ListView>
+
 
     <Button android:text="@string/proceed"
         android:id="@+id/proceed"

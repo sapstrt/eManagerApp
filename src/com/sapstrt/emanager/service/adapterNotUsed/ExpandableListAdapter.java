@@ -1,4 +1,4 @@
-package com.sapstrt.emanager.service.adapter;
+package com.sapstrt.emanager.service.adapterNotUsed;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -49,7 +49,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_item, null);
+            convertView = infalInflater.inflate(R.layout.list_itemNotUsed, null);
         }
 
         TextView txtListChild = (TextView) convertView
@@ -87,7 +87,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_group, null);
+            convertView = infalInflater.inflate(R.layout.list_groupNotUsed, null);
         }
 
         TextView lblListHeader = (TextView) convertView

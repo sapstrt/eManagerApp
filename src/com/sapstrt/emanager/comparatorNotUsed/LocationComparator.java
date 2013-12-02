@@ -1,4 +1,6 @@
-package com.sapstrt.emanager.domain;
+package com.sapstrt.emanager.comparatorNotUsed;
+
+import com.sapstrt.emanager.domain.Expense;
 
 import java.util.Comparator;
 

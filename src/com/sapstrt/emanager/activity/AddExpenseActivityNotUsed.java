@@ -15,10 +15,10 @@ import com.sapstrt.emanager.service.expense.ExpenseServiceImpl;
 /**
  * Created by pteltu on 9/25/13.
  */
-public class AddExpenseActivity extends Activity implements View.OnClickListener {
+public class AddExpenseActivityNotUsed extends Activity implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_expense);
+        setContentView(R.layout.add_expenseNotUsed);
         Button saveButton = (Button) findViewById(R.id.addButton);
         saveButton.setOnClickListener((android.view.View.OnClickListener)this);
 
@@ -42,7 +42,7 @@ public class AddExpenseActivity extends Activity implements View.OnClickListener
             expenseService.createNewExpense(expense);
 
         }
-        Intent intent = new Intent(this,DrawerActivity.class);
+        Intent intent = new Intent(this,MainActivity.class);
         this.startActivity(intent);
     }
 }

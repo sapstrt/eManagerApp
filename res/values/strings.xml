@@ -21,4 +21,7 @@
     <string name="pick_date">Pick Date</string>
     <string name="title_activity_get_configuration">Get Configuration</string>
     <string name="title_activity_select_bank">Select Bank</string>
+    <string name="proceed">Proceed</string>
+    <string name="chooseBankName">Choose Bank Name to track expenses :</string>
+    <string name="chooseGoogleAccount">Choose Google Account to be used :</string>
 </resources>

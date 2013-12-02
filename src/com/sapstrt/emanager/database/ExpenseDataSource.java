@@ -75,7 +75,7 @@ public class ExpenseDataSource {
                 contentValues.put(ExpenseSQLiteHelper.COLUMN_LOCATION,expense.getLocation());
                 contentValues.put(ExpenseSQLiteHelper.COLUMN_MODE,expense.getMode());
                 long updateId=database.update(ExpenseSQLiteHelper.TABLE_EXPENSES,contentValues,ExpenseSQLiteHelper.COLUMN_ID +"="+expense.getExpenseId().toString(),null);
-                System.out.print(updateId);
+
             }
             else
                 throw new RuntimeException("Expense Not Found");

@@ -1,9 +1,8 @@
-package com.sapstrt.emanager.domain;
+package com.sapstrt.emanager.comparatorNotUsed;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.sapstrt.emanager.domain.Expense;
+
 import java.util.Comparator;
-import java.util.Date;
 
 /**
  * Created by pteltu on 10/4/13.

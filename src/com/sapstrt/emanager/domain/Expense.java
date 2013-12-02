@@ -8,6 +8,24 @@ public class Expense {
     private Double amount;
     private String location;
     private String mode;
+    private Integer grpId;
+    private Integer userId;
+
+    public Integer getGrpId() {
+        return grpId;
+    }
+
+    public void setGrpId(Integer grpId) {
+        this.grpId = grpId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     public Integer getExpenseId() {
         return expenseId;
@@ -57,12 +75,17 @@ public class Expense {
         this.location = location;
     }
 
-
+    @Override
     public String toString() {
-        return  " Expense Name :" + expenseName +
-                " Date :" + date +
-                " Amount :" + amount +
-                " Location :" + location +
-                " Mode :" + mode   ;
+        return "Expense{" +
+                "expenseId=" + expenseId +
+                ", expenseName='" + expenseName + '\'' +
+                ", date='" + date + '\'' +
+                ", amount=" + amount +
+                ", location='" + location + '\'' +
+                ", mode='" + mode + '\'' +
+                ", grpId=" + grpId +
+                ", userId=" + userId +
+                '}';
     }
 }
